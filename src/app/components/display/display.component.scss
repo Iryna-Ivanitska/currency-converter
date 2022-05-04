@@ -1,0 +1,17 @@
+.display {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  box-sizing: border-box;
+  background-color: #000;
+
+  &__name {
+    padding: 3px;
+    background-color: #fff;
+  }
+
+  &__value {
+    padding: 0 5px;
+    color: #fff;
+  }
+}
