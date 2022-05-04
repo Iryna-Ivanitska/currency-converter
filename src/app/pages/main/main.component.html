@@ -1,5 +1,9 @@
-<div class="header" >
-  <app-display *ngIf="currencyUSD" [currency]="currencyUSD"></app-display>
-  <div class="header__title">Currency converter</div>  
-  <app-display *ngIf="currencyEUR" [currency]="currencyEUR"></app-display>
+<div class="title">Currency converter</div> 
+<div class="rate">
+  <div *ngFor="let currency of currencies">
+    <app-display [currency]="currency"></app-display>
+  </div>
+</div> 
+<div class="main">
+  <app-converter-block [currencies]="currencies"></app-converter-block>
 </div>

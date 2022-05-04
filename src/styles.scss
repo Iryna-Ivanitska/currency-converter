@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 body {
   // background: rgb(117,117,117);
@@ -6,5 +7,3 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

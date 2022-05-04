@@ -1,0 +1,11 @@
+.converter {
+  width: 80%;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-around;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+  }
+}

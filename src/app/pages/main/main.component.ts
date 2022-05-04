@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CurrencyService } from 'src/app/services/currency.service';
 import { ICurrency } from './../../interfaces/currency';
 
@@ -7,19 +8,20 @@ import { ICurrency } from './../../interfaces/currency';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
-  public currencyUSD: ICurrency;
-  public currencyEUR: ICurrency;
+export class MainComponent implements OnInit, OnDestroy {
+  public currencies: ICurrency[];
+  sub = new Subscription;
   
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit(): void {
-    this.currencyService.getData().subscribe(
-      response => {
-        this.currencyUSD = response[0];
-        this.currencyEUR = response[1];
-      }
+    this.sub = this.currencyService.getData().subscribe(
+      response => this.currencies = response
     )
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
 }
