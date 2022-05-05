@@ -4,3 +4,9 @@ export interface ICurrency {
   buy: number,
   sale: number,
 }
+
+export enum CurrencyLabels {
+  USD = "USD",
+  UAH = "UAH",
+  EUR = "EUR",
+}

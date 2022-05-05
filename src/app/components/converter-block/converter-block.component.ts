@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, Input } from '@angular/core';
-import { ICurrency } from 'src/app/interfaces/currency';
+import { CurrencyLabels, ICurrency } from 'src/app/interfaces/currency';
 
 @Component({
   selector: 'app-converter-block',
@@ -8,7 +8,7 @@ import { ICurrency } from 'src/app/interfaces/currency';
 })
 
 export class ConverterBlockComponent {
-  public currenciesLabel = ['UAH', 'EUR', 'USD']
+  public currenciesLabel = [CurrencyLabels.UAH, CurrencyLabels.EUR, CurrencyLabels.USD]
   @Input('currencies') currencies: ICurrency[]
   selectedTo = this.currenciesLabel[1]
   selectedFrom = this.currenciesLabel[0]
@@ -26,37 +26,37 @@ export class ConverterBlockComponent {
   public inOrderExchange(value: string, reverse = false): void {
     let sum: string;
     switch (true) {
-      case (this.selectedFrom === 'UAH' && this.selectedTo === "USD"): {
+      case (this.selectedFrom === CurrencyLabels.UAH && this.selectedTo === CurrencyLabels.USD): {
         sum = reverse 
           ? this.exchangeUSDtoUAH(Number(value)).toFixed(2)
           : this.exchangeUAHtoUSD(Number(value)).toFixed(2)
         break;
       }
-      case (this.selectedFrom === 'UAH' && this.selectedTo === "EUR"): {
+      case (this.selectedFrom === CurrencyLabels.UAH && this.selectedTo === CurrencyLabels.EUR): {
         sum = reverse 
           ? this.exchangeEURtoUAH(Number(value)).toFixed(2)
           : this.exchangeUAHtoEUR(Number(value)).toFixed(2)
         break;
       }
-      case (this.selectedFrom === 'EUR' && this.selectedTo === "UAH"): {
+      case (this.selectedFrom === CurrencyLabels.EUR && this.selectedTo === CurrencyLabels.UAH): {
         sum = reverse 
           ? this.exchangeUAHtoEUR(Number(value)).toFixed(2)
           : this.exchangeEURtoUAH(Number(value)).toFixed(2)
         break;
       }
-      case (this.selectedFrom === 'USD' && this.selectedTo === "UAH"): {
+      case (this.selectedFrom === CurrencyLabels.USD && this.selectedTo === CurrencyLabels.UAH): {
         sum = reverse
           ? this.exchangeUAHtoUSD(Number(value)).toFixed(2)
           : this.exchangeUSDtoUAH(Number(value)).toFixed(2)
         break;
       }
-      case (this.selectedFrom === 'EUR' && this.selectedTo === "USD"): {
+      case (this.selectedFrom === CurrencyLabels.EUR && this.selectedTo === CurrencyLabels.USD): {
         sum = reverse 
           ? this.exchangeUSDtoEUR(Number(value)).toFixed(2)
           : this.exchangeEURtoUSD(Number(value)).toFixed(2)
         break;
       }
-      case (this.selectedFrom === 'USD' && this.selectedTo === "EUR"): {
+      case (this.selectedFrom === CurrencyLabels.USD && this.selectedTo === CurrencyLabels.EUR): {
         sum = reverse
           ? this.exchangeEURtoUSD(Number(this.inputFrom.value)).toFixed(2)
           : this.exchangeUSDtoEUR(Number(this.inputFrom.value)).toFixed(2)
