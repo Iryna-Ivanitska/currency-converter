@@ -1,12 +1,12 @@
 <div class="converter">
   <div class="converter__item">
     <mat-form-field appearance="outline" >
-      <!-- <mat-label>Exchange value</mat-label> -->
-      <input matInput type="number" #valueFrom (input)="inOrderExchange()">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" #valueFrom (input)="inOrderExchange(inputFrom.value)">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Currency From</mat-label>
-      <mat-select [(value)]="selectedFrom" (valueChange)="inOrderExchange()">
+      <mat-select [(value)]="selectedFrom" (valueChange)="inOrderExchange(inputFrom.value)">
         <mat-option *ngFor="let label of currenciesLabel" [value]="label" #fromCurrency>
           {{label}}
         </mat-option>
@@ -15,12 +15,12 @@
   </div>
   <div class="converter__item">
     <mat-form-field appearance="outline" >
-      <!-- <mat-label>Exchange value</mat-label> -->
-      <input matInput type="number" #valueTo (input)="reverseOrderExchange()">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" #valueTo (input)="inOrderExchange(inputTo.value, true)">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Currency To</mat-label>
-      <mat-select [(value)]="selectedTo" (valueChange)="reverseOrderExchange()">
+      <mat-select [(value)]="selectedTo" (valueChange)="inOrderExchange(inputTo.value, true)">
         <mat-option *ngFor="let label of currenciesLabel" [value]="label" #toCurrency>
           {{label}}
         </mat-option>

@@ -14,78 +14,63 @@ export class ConverterBlockComponent {
   selectedFrom = this.currenciesLabel[0]
 
   @ViewChild('valueFrom') valueFrom: ElementRef;
-  inputFrom: HTMLInputElement;
+  public inputFrom: HTMLInputElement;
   @ViewChild('valueTo') valueTo: ElementRef;
-  inputTo: HTMLInputElement;
+  public inputTo: HTMLInputElement;
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.inputFrom = this.valueFrom.nativeElement
     this.inputTo = this.valueTo.nativeElement
   }
 
-  public inOrderExchange() {
+  public inOrderExchange(value: string, reverse = false): void {
+    let sum: string;
     switch (true) {
       case (this.selectedFrom === 'UAH' && this.selectedTo === "USD"): {
-        this.inputTo.value = this.exchangeUAHtoUSD(Number(this.inputFrom.value)).toFixed(2)
+        sum = reverse 
+          ? this.exchangeUSDtoUAH(Number(value)).toFixed(2)
+          : this.exchangeUAHtoUSD(Number(value)).toFixed(2)
         break;
       }
       case (this.selectedFrom === 'UAH' && this.selectedTo === "EUR"): {
-        this.inputTo.value = this.exchangeUAHtoEUR(Number(this.inputFrom.value)).toFixed(2)
+        sum = reverse 
+          ? this.exchangeEURtoUAH(Number(value)).toFixed(2)
+          : this.exchangeUAHtoEUR(Number(value)).toFixed(2)
         break;
       }
       case (this.selectedFrom === 'EUR' && this.selectedTo === "UAH"): {
-        this.inputTo.value = this.exchangeEURtoUAH(Number(this.inputFrom.value)).toFixed(2)
+        sum = reverse 
+          ? this.exchangeUAHtoEUR(Number(value)).toFixed(2)
+          : this.exchangeEURtoUAH(Number(value)).toFixed(2)
         break;
       }
       case (this.selectedFrom === 'USD' && this.selectedTo === "UAH"): {
-        this.inputTo.value = this.exchangeUSDtoUAH(Number(this.inputFrom.value)).toFixed(2)
+        sum = reverse
+          ? this.exchangeUAHtoUSD(Number(value)).toFixed(2)
+          : this.exchangeUSDtoUAH(Number(value)).toFixed(2)
         break;
       }
       case (this.selectedFrom === 'EUR' && this.selectedTo === "USD"): {
-        this.inputTo.value = this.exchangeEURtoUSD(Number(this.inputFrom.value)).toFixed(2)
+        sum = reverse 
+          ? this.exchangeUSDtoEUR(Number(value)).toFixed(2)
+          : this.exchangeEURtoUSD(Number(value)).toFixed(2)
         break;
       }
       case (this.selectedFrom === 'USD' && this.selectedTo === "EUR"): {
-        this.inputTo.value = this.exchangeUSDtoEUR(Number(this.inputFrom.value)).toFixed(2)
+        sum = reverse
+          ? this.exchangeEURtoUSD(Number(this.inputFrom.value)).toFixed(2)
+          : this.exchangeUSDtoEUR(Number(this.inputFrom.value)).toFixed(2)
         break;
       }
       default: {
-        this.inputTo.value = this.inputFrom.value;
+        sum = value.toString();
         break
       };
     }
-  }
-
-  public reverseOrderExchange() {
-    switch (true) {
-      case (this.selectedFrom === 'UAH' && this.selectedTo === "USD"): {
-        this.inputFrom.value = this.exchangeUSDtoUAH(Number(this.inputTo.value)).toFixed(2)
-        break;
-      }
-      case (this.selectedFrom === 'UAH' && this.selectedTo === "EUR"): {
-        this.inputFrom.value = this.exchangeEURtoUAH(Number(this.inputTo.value)).toFixed(2)
-        break;
-      }
-      case (this.selectedFrom === 'EUR' && this.selectedTo === "UAH"): {
-        this.inputFrom.value = this.exchangeUAHtoEUR(Number(this.inputTo.value)).toFixed(2)
-        break;
-      }
-      case (this.selectedFrom === 'EUR' && this.selectedTo === "USD"): {
-        this.inputFrom.value = this.exchangeUSDtoEUR(Number(this.inputTo.value)).toFixed(2)
-        break;
-      }
-      case (this.selectedFrom === 'USD' && this.selectedTo === "UAH"): {
-        this.inputFrom.value = this.exchangeUAHtoUSD(Number(this.inputTo.value)).toFixed(2)
-        break;
-      }
-      case (this.selectedFrom === 'USD' && this.selectedTo === "EUR"): {
-        this.inputFrom.value = this.exchangeEURtoUSD(Number(this.inputTo.value)).toFixed(2)
-        break;
-      }
-      default: {
-        this.inputFrom.value = this.inputTo.value;
-        break
-      };
+    if (!reverse) {
+      this.inputTo.value = sum
+    } else {
+      this.inputFrom.value = sum
     }
   }
 
@@ -114,6 +99,6 @@ export class ConverterBlockComponent {
     let cur = this.selectedFrom;
     this.selectedFrom = this.selectedTo;
     this.selectedTo = cur;
-    this.inOrderExchange();
+    this.inOrderExchange(this.inputFrom.value);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ICurrency } from 'src/app/interfaces/currency';
 
 @Component({
@@ -6,12 +6,6 @@ import { ICurrency } from 'src/app/interfaces/currency';
   templateUrl: './display.component.html',
   styleUrls: ['./display.component.scss']
 })
-export class DisplayComponent implements OnInit {
+export class DisplayComponent {
   @Input() currency: ICurrency;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

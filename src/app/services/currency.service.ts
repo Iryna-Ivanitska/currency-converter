@@ -11,7 +11,7 @@ export class CurrencyService {
 
   constructor(private http: HttpClient) { }
 
-  getData() {
+  getData(): Observable<ICurrency[]> {
     return this.http.get<ICurrency[]>(this.BASE_URL).pipe(
       map(response => response.map( el => ({
         ccy: el.ccy,
@@ -19,7 +19,6 @@ export class CurrencyService {
         buy: Number(el.buy),
         sale: Number(el.sale)
       })).filter(el => el.ccy != "BTC")
-      )
-      )
+      ))
   }
 }
