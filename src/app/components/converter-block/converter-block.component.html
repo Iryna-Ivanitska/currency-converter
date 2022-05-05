@@ -1,7 +1,7 @@
 <div class="converter">
   <div class="converter__item">
     <mat-form-field appearance="outline" >
-      <mat-label>Exchange value</mat-label>
+      <!-- <mat-label>Exchange value</mat-label> -->
       <input matInput type="number" #valueFrom (input)="inOrderExchange()">
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -15,7 +15,7 @@
   </div>
   <div class="converter__item">
     <mat-form-field appearance="outline" >
-      <mat-label>Exchange value</mat-label>
+      <!-- <mat-label>Exchange value</mat-label> -->
       <input matInput type="number" #valueTo (input)="reverseOrderExchange()">
     </mat-form-field>
     <mat-form-field appearance="outline">
@@ -26,6 +26,9 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+  </div>
+  <div class="icon">
+    <mat-icon (click)="switchCurrencies()">compare_arrows</mat-icon>
   </div>
 </div>
  

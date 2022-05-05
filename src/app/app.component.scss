@@ -1,7 +1,12 @@
-
 .container {
-  width: 1200px;
+  max-width: 600px;
   margin: 0 auto;
-  border: 1px solid black;
+  padding: 40px;
+  background-color: #ec781f;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  -webkit-box-shadow: 0px 0px 17px 0px #000000; 
+  box-shadow: 0px 0px 17px 0px #000000;
+  font-family: 'Montserrat', sans-serif;
 }
-

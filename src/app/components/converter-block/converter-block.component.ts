@@ -109,4 +109,11 @@ export class ConverterBlockComponent {
     const amountUAH = this.exchangeEURtoUAH(amount)
     return this.exchangeUAHtoUSD(amountUAH)
   }
+ 
+  switchCurrencies() {
+    let cur = this.selectedFrom;
+    this.selectedFrom = this.selectedTo;
+    this.selectedTo = cur;
+    this.inOrderExchange();
+  }
 }

@@ -4,14 +4,17 @@
   border: 1px solid black;
   box-sizing: border-box;
   background-color: #000;
+  font-size: 18px;
 
   &__name {
-    padding: 3px;
+    padding: 5px;
     background-color: #fff;
   }
 
   &__value {
     padding: 0 5px;
     color: #fff;
+    font-weight: 700;
+    letter-spacing: 2px;
   }
 }
