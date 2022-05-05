@@ -6,7 +6,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Currency From</mat-label>
-      <mat-select [(value)]="selectedFrom">
+      <mat-select [(value)]="selectedFrom" (valueChange)="inOrderExchange()">
         <mat-option *ngFor="let label of currenciesLabel" [value]="label" #fromCurrency>
           {{label}}
         </mat-option>
@@ -16,11 +16,11 @@
   <div class="converter__item">
     <mat-form-field appearance="outline" >
       <mat-label>Exchange value</mat-label>
-      <input matInput type="number" #valueTo>
+      <input matInput type="number" #valueTo (input)="reverseOrderExchange()">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Currency To</mat-label>
-      <mat-select [(value)]="selectedTo">
+      <mat-select [(value)]="selectedTo" (valueChange)="reverseOrderExchange()">
         <mat-option *ngFor="let label of currenciesLabel" [value]="label" #toCurrency>
           {{label}}
         </mat-option>
